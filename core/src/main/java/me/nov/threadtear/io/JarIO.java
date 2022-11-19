@@ -1,6 +1,7 @@
 package me.nov.threadtear.io;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.*;
 import java.util.jar.*;
 import java.util.stream.Stream;
@@ -115,7 +116,7 @@ public final class JarIO {
 
   public static File writeTempJar(String name, byte[] clazz) {
     try {
-      File temp = File.createTempFile("temp-jar", ".jar");
+      File temp = Files.createTempFile("temp-jar", ".jar").toFile();
       JarOutputStream out = new JarOutputStream(new FileOutputStream(temp));
       out.putNextEntry(new JarEntry(name + ".class"));
       out.write(clazz);
